@@ -1,13 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Index from '../src/index';
-import Count from '../src/count';
+import { BrowserRouter } from 'react-router-dom'
+import router from '../routes';
 
-const Container = () => {
-  return (<>
-    <Index />
-    <Count />
-  </>)
-}
-
-ReactDOM.hydrate(<Container />, document.getElementById('root'))
+ReactDOM.hydrate(<BrowserRouter>
+  {router}
+</BrowserRouter>, document.getElementById('root'))

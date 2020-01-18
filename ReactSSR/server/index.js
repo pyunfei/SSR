@@ -1,23 +1,27 @@
-import React from 'react';
-import Index from '../src/index';
-import Count from '../src/count';
-import { renderToString } from 'react-dom/server';
+import React from "react";
+// import Index from '../src/index';
+// import Count from '../src/count';
+import { renderToString } from "react-dom/server";
+import { StaticRouter } from "react-router-dom";
+import routes from '../routes';
 const express = require("express");
 const app = express();
 
-app.use(express.static('public'));
+app.use(express.static("public"));
 
-const Container = () => {
-  return (<>
-    <Index />
-    <Count />
-  </>)
-}
+// const Container = () => {
+//   return (<>
+//     <Index />
+//     <Count />
+//   </>)
+// }
 
-const html = renderToString(<Container />);
-
-
-app.get("/", (req, res) => {
+app.get("*", (req, res) => {
+  const html = renderToString(
+    <StaticRouter context={{}} location={req.path}>
+      {routes}
+    </StaticRouter>
+  );
   res.send(`
   <!DOCTYPE html>
   <html lang="en">
