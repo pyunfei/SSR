@@ -14,7 +14,13 @@ function Index(props) {
   </div>
 }
 
-export default connect(
+Index = connect(
   state => state.home,
   actions
-)(Index);
+)(Index)
+
+Index.loadData = function(store) {
+  return store.dispatch(actions.addList())
+}
+
+export default Index;
